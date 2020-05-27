@@ -17,6 +17,7 @@ public class ReferenceNumberLookup {
     private boolean api_calling;
     private String ok_for_agent;
     private String ok_for_pickup;
+    private String api_err_calling;
     
     
     private String code;
@@ -30,7 +31,13 @@ public class ReferenceNumberLookup {
     private String payout_amount;  
     private String payout_currency;  
     private String txn_date; 
-    private String status;   
+    private String status;
+    private String mgiTransID;
+    private String agent_check_number;
+    private String agent_check_amount;
+    private String cus_check_num;
+    private String cus_check_amount;
+    private String error_message;
     
     
     
@@ -38,6 +45,7 @@ public class ReferenceNumberLookup {
     public ReferenceNumberLookup(Credential cdt) {
         this.ok_for_agent = "false";
         this.ok_for_pickup = "false";
+        this.api_err_calling = "false";
         
         try {
             SOAPMessage responseMessage = new ReferenceNumber(cdt).getResponse();
@@ -78,6 +86,30 @@ public class ReferenceNumberLookup {
                     this.ok_for_agent = nodeValue;
                 } else if (nodeName.equals("ac:okForPickup")) {
                     this.ok_for_pickup = nodeValue;
+                } else if (nodeName.equals("ac:mgiTransactionSessionID")) {
+                    this.mgiTransID = nodeValue;
+                } else if (nodeName.equals("ac:agentCheckNumber")) {
+                    this.agent_check_number = nodeValue;
+                } else if (nodeName.equals("ac:agentCheckAmount")) {
+                    this.agent_check_amount = nodeValue;
+                } else if (nodeName.equals("ac:customerCheckNumber")) {
+                    this.cus_check_num = nodeValue;
+                } else if (nodeName.equals("ac:customerCheckAmount")) {
+                    this.cus_check_amount = nodeValue;
+                } else if (nodeName.equals("detail")) {
+                    // Handling error in api calling
+                    Node err = message.item(i).getFirstChild().getFirstChild();
+                    NodeList err_message = err.getChildNodes();
+                    for(int  j = 0; j < err_message.getLength(); ++j) {
+                        String err_nodeName = err_message.item(j).getNodeName();
+                        String err_nodeValue = err_message.item(j).getTextContent();
+                
+                        if (err_nodeName.equals("ac:errorString")) {
+                            this.error_message = err_nodeValue;
+                            this.api_err_calling = "true";
+                        }
+                    }
+                    
                 }
 
             }
@@ -130,12 +162,40 @@ public class ReferenceNumberLookup {
         return this.status;
     }
     
+    public String getmgiTansID() {
+        return this.mgiTransID;
+    }
+    
+    public String getAgentCheckNumber() {
+        return this.agent_check_number;
+    }
+    
+    public String getAgentCheckAmount() {
+        return this.agent_check_amount;
+    }
+    
+    public String getCustomerCheckNumber() {
+        return this.cus_check_num;
+    }
+    
+    public String getCustomerCheckAmount() {
+        return this.cus_check_amount;
+    }
+    
     public boolean getOkForAgent() {
         return this.ok_for_agent.equalsIgnoreCase("true");
     }
     
     public boolean getOkForPickup() {
         return this.ok_for_pickup.equalsIgnoreCase("true");
+    }
+    
+    public String getErrorMessage() {
+        return this.error_message;
+    }
+    
+    public boolean getErrorCalling() {
+        return this.api_err_calling.equalsIgnoreCase("true");
     }
     
     public boolean getSuccessfullCalling() {

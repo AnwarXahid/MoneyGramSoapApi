@@ -40,6 +40,13 @@ private String paid_date;
 private String paid_by;
 
 
+// modified by xahid
+private String agentCheckNumber; 
+private String agentCheckAmount; 
+private String customerCheckNumber;  
+private String customerCheckAmount;
+
+
 
 public ApiResponse() {
     this.code="";
@@ -69,6 +76,13 @@ public ApiResponse() {
     this.status="";
     this.paid_date="";
     this.paid_by="";
+    
+    
+    // modified by xahid
+    this.agentCheckNumber = "";
+    this.agentCheckAmount = "";
+    this.customerCheckNumber = "";
+    this.customerCheckAmount = "";
 }
 
 
@@ -236,4 +250,44 @@ return paid_by;
 public void setPaid_by(String paid_by) {
 this.paid_by = paid_by;
 }
+
+
+
+// Modified by Xahid
+
+    
+    public void setAgentCheckNumber(String agentCheckNumber) {
+        this.agentCheckNumber = agentCheckNumber;
+    }
+    
+    public String getAgentCheckNumber() {
+        return this.agentCheckNumber;
+    }
+    
+    
+    public void setAgentCheckAmount(String agentCheckAmount) {
+        this.agentCheckAmount = agentCheckAmount;
+    }
+    
+    public String getAgentCheckAmount() {
+        return this.agentCheckAmount;
+    }
+    
+    
+    public void setCustomerCheckNumber(String customerCheckNumber) {
+        this.customerCheckNumber = customerCheckNumber;
+    }
+    
+    public String getCustomerCheckNumber() {
+        return this.customerCheckNumber;
+    }
+    
+    
+    public void setCustomerCheckAmount(String customerCheckAmount) {
+        this.customerCheckAmount = customerCheckAmount;
+    }
+    
+    public String getCustomerCheckAmount() {
+        return this.customerCheckAmount;
+    }
 }

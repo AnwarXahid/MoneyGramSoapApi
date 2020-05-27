@@ -12,34 +12,38 @@ import org.w3c.dom.NodeList;
  **/
 
 
-public class ReceiveValidationLookup {
-    // Property of ReceiveValidationLookUp
+public class CommitTransactionLookUp {
+    // Property of CommitTransactionLookUp
     private boolean api_calling;
     private String error_message;
     private String api_err_calling;
     
-    private String readyForCommit;
+    private String code;
+    private String expectedDateOfDelivery;
+    private String transactionDateTime;
     
     // Writing Constructor Function
 
-    public ReceiveValidationLookup(Credential cdt, ReceiverInfo rcv_info, ApiResponse api_res) {
-        this.readyForCommit = "false";
+    public CommitTransactionLookUp(Credential cdt, ApiResponse api_res) {
         this.api_err_calling = "false";
         
         try {
-            SOAPMessage responseMessage = new ReceiveValidation(cdt, rcv_info, api_res).getResponse();
+            SOAPMessage responseMessage = new CommitTransaction(cdt, api_res).getResponse();
             SOAPPart sp = responseMessage.getSOAPPart();
             SOAPEnvelope se = sp.getEnvelope();
             SOAPBody soap_body = se.getBody();
             Node responseMsg = soap_body.getFirstChild();
             NodeList message = responseMsg.getChildNodes();
-            
             for(int  i = 0; i < message.getLength(); ++i) {
                 String nodeName = message.item(i).getNodeName();
                 String nodeValue = message.item(i).getTextContent();
-                
-                if(nodeName.equals("ac:readyForCommit")) {
-                    this.readyForCommit = nodeValue;
+                  
+                if(nodeName.equals("ac:flags")) {
+                    this.code = nodeValue;
+                } else if (nodeName.equals("ac:expectedDateOfDelivery")) {
+                    this.expectedDateOfDelivery = nodeValue;
+                } else if (nodeName.equals("ac:transactionDateTime")) {
+                    this.transactionDateTime = nodeValue;
                 } else if (nodeName.equals("detail")) {
                     // Handling error in api calling
                     Node err = message.item(i).getFirstChild().getFirstChild();
@@ -60,13 +64,21 @@ public class ReceiveValidationLookup {
             this.api_calling = true;
         } catch (Exception e) {
             this.api_calling = false;
-            System.out.println("ReceiveValidationLookUp::constructorFunction:- "+e.toString());
+            System.out.println("CommitTransactionLookUp::constructorFunction:- "+e.toString());
         }
     }
     
     
-    public boolean getReadyForCommit() {
-        return this.readyForCommit.equalsIgnoreCase("true");
+    public String getCode() {
+        return this.code;
+    }
+    
+    public String getExpectedDateOfDelivery() {
+        return this.expectedDateOfDelivery;
+    }
+    
+    public String getTranactionDateTime() {
+        return this.transactionDateTime;
     }
     
     public String getErrorMessage() {

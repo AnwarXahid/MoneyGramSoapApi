@@ -52,7 +52,7 @@ public class ReceiveValidation {
     
     
     // Writing Constructor Function
-    public ReceiveValidation(Credential cdt) {
+    public ReceiveValidation(Credential cdt, ReceiverInfo rcv_info, ApiResponse api_res) {
         // Credential Properties
         this.referenceNumber = cdt.getReferenceNumber();
         this.soapEndpointUrl = cdt.getSoapEndpointUrl();
@@ -65,42 +65,32 @@ public class ReceiveValidation {
         this.channelType = cdt.getChannelType();
         this.targetAudience = cdt.getTargetAudience();
         this.timeStamp = cdt.getTimeStamp();
+        this.consumerId = cdt.getConsumerId();
+        this.formFreeStaging = cdt.getFormFreeStaging();
         
+        // ReceiverInfo Properties
+        this.receiverAddress = rcv_info.getReceiverAddress();
+        this.receiverCity = rcv_info.getReceiverCity();
+        this.receiverCountry = rcv_info.getReceiverCountry();
+        this.receiverPhotoIdType = rcv_info.getReceiverPhotoIdType();
+        this.receiverPhotoIdNumber = rcv_info.getReceiverPhotoIdNumber();
+        this.receiverPhotoIdCountry = rcv_info.getReceiverPhotoIdCountry();
+        this.receiverDOB = rcv_info.getReceiverDOB();
+        this.receiverBirthCountry = rcv_info.getReceiverBirthCountry();
+        this.receiverPhone = rcv_info.getReceiverPhone();
+        this.receivePurposeOfTransaction = rcv_info.getReceivePurposeOfTransaction(); 
+        this.relationshipToSender = rcv_info.getRelationshipToSender(); 
+        this.receiverGender = rcv_info.getReceiverGender(); 
+        this.receiverPhoneCountryCode = rcv_info.getReceiverPhoneCountryCode(); 
         
-        this.receiveCurrency = "BDT";   // from rnr(ReferenceNumberRequest)
-        this.agentCheckNumber = "0000000000";   // from rnr
-        this.agentCheckAmount = "159911.930"; // from rnr
-        this.customerCheckNumber = "0000000000";    // from rnr
-        this.customerCheckAmount = "0.000"; //from rnr
-        this.receiverAddress = "45TH STREET MOTHIJEEL"; // from customer
-        this.receiverCity = "DHAKA";    // from customer
-        this.receiverCountry = "BGD";   // from customer
-        this.receiverPhotoIdType = "PAS";   // from customer
-        this.receiverPhotoIdNumber = "903094094090";    // from customer
-        this.receiverPhotoIdCountry = "BGD";    // from customer
-        this.receiverDOB = "1990-01-01";    // from customer
-        this.receiverBirthCountry = "BGD";  // ????static?????
-        this.consumerId = "0";  // ????our system generated????
-        this.receiverPhone = "0943043043008";   // from customer
-        this.mgiTransactionSessionID = "434575681E15897463850767416586";    // from rnr
-        this.formFreeStaging = "false"; // ???? what is this????
-        this.receivePurposeOfTransaction = "FAMILY_SUPPORT"; // from customer 
-        this.relationshipToSender = "FAMILY"; // from customer
-        this.receiverGender = "FEMALE"; // from customer
-        this.receiverPhoneCountryCode = "880";  // static
-    
+        // Fetch from ReferenceNumberLookUp
+        this.receiveCurrency = api_res.getPayout_currency(); 
+        this.agentCheckNumber = api_res.getAgentCheckNumber(); 
+        this.agentCheckAmount = api_res.getAgentCheckAmount(); 
+        this.customerCheckNumber = api_res.getCustomerCheckNumber(); 
+        this.customerCheckAmount = api_res.getCustomerCheckAmount();
+        this.mgiTransactionSessionID = api_res.getPay_token_id();
         
-        
-        // Receiver Address from customer : 3 parameter- address, city, country
-        // Receiver Photo ID verification : 3 parameter- type, number, country
-        // Receiver Date of Birth 
-        // Receiver Phone  Number 
-        // Relationship to Sender 
-        // receiver gender 
-        // purpose of transaction 
-        // receiverBirthCountry : can be default
-        // consumerID ????? don't know
-        // ????formFreeStaging???? 
         
     }   
       
@@ -163,16 +153,15 @@ public class ReceiveValidation {
         SOAPPart soapPart = soapMessage.getSOAPPart();
 
         String myNamespace = "ac";
-        String envNamespace = "soapenv";
         String myNamespaceURI = "http://www.moneygram.com/AgentConnect1512";
 
         // Writing SOAP Envelope
         SOAPEnvelope envelope = soapPart.getEnvelope();
-        envelope.addNamespaceDeclaration(envNamespace, myNamespaceURI);
+        envelope.addNamespaceDeclaration(myNamespace, myNamespaceURI);
 
         // Writing SOAP Body
         SOAPBody soapBody = envelope.getBody();
-        SOAPElement soapBodyElem = soapBody.addChildElement("receiveValidationResponse", myNamespace, myNamespaceURI);
+        SOAPElement soapBodyElem = soapBody.addChildElement("receiveValidationRequest", myNamespace, myNamespaceURI);
         SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("agentID", myNamespace);
         soapBodyElem1.addTextNode(this.agentID);
         SOAPElement soapBodyElem2 = soapBodyElem.addChildElement("agentSequence", myNamespace);

@@ -24,10 +24,14 @@ public class Credential {
     private final String clientSoftwareVersion;
     private final String channelType;
     private final String targetAudience;
+    private final String consumerId;
+    private final String formFreeStaging;
+    private final String productType;
+    private final int maxCommitAttempt;
     
     
     public Credential() {
-        this.referenceNumber = "18654666";
+        this.referenceNumber = "88111562";
         this.soapEndpointUrl = "https://extws.moneygram.com/extws/services/AgentConnect1512";
         this.soapAction = "https://extws.moneygram.com/extws/services/AgentConnect1512";
         this.agentID = "43457568";
@@ -41,6 +45,14 @@ public class Credential {
         ZoneId z = ZoneId.of( "Asia/Dhaka" ) ;  
         ZonedDateTime zdt = ZonedDateTime.now( z ) ;
         this.timeStamp = zdt.toString().replace("[Asia/Dhaka]", "");
+        
+        // ConsumerId will be got from Database
+        this.consumerId = "0";
+        this.formFreeStaging = "false";
+        
+        this.productType = "RCV";
+        this.maxCommitAttempt = 3;
+        
     }
     
     
@@ -86,5 +98,21 @@ public class Credential {
     
     public String getTimeStamp() {
         return this.timeStamp;
+    }
+    
+    public String getConsumerId() {
+        return this.consumerId;
+    }
+    
+    public String getFormFreeStaging() {
+        return this.formFreeStaging;
+    }
+    
+    public String getProductType() {
+        return this.productType;
+    }
+    
+    public int getMaxCommitAttempt() {
+        return this.maxCommitAttempt;
     }
 }

@@ -30,19 +30,19 @@ public class ReceiverInfo {
     
     // Writing Constructor Function
     public ReceiverInfo() {
-        this.receiverAddress = ""; 
-        this.receiverCity = "";    
-        this.receiverCountry = "";   
-        this.receiverPhotoIdType = "";   
-        this.receiverPhotoIdNumber = "";   
-        this.receiverPhotoIdCountry = "";    
-        this.receiverDOB = "";    
-        this.receiverBirthCountry = "";  
-        this.receiverPhone = "";
-        this.receivePurposeOfTransaction = "";
-        this.relationshipToSender = ""; 
-        this.receiverGender = "";
-        this.receiverPhoneCountryCode = "";   
+        this.receiverAddress = "45TH STREET MOTHIJEEL"; 
+        this.receiverCity = "DHAKA";    
+        this.receiverCountry = "BGD";   
+        this.receiverPhotoIdType = "PAS";   
+        this.receiverPhotoIdNumber = "903094094090";   
+        this.receiverPhotoIdCountry = "BGD";    
+        this.receiverDOB = "1990-01-01";    
+        this.receiverBirthCountry = "BGD";  
+        this.receiverPhone = "0943043043008";
+        this.receivePurposeOfTransaction = "FAMILY_SUPPORT";
+        this.relationshipToSender = "FAMILY"; 
+        this.receiverGender = "FEMALE";
+        this.receiverPhoneCountryCode = "880";   
     }
     
     
@@ -167,7 +167,7 @@ public class ReceiverInfo {
         this.receiverGender = receiverGender;
     }
     
-    public String setReceiverGender() {
+    public String getReceiverGender() {
         return this.receiverGender;
     }
     
