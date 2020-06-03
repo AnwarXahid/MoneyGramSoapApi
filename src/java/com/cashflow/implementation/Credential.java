@@ -31,7 +31,7 @@ public class Credential {
     
     
     public Credential() {
-        this.referenceNumber = "88111562";
+        this.referenceNumber = "91185422";
         this.soapEndpointUrl = "https://extws.moneygram.com/extws/services/AgentConnect1512";
         this.soapAction = "https://extws.moneygram.com/extws/services/AgentConnect1512";
         this.agentID = "43457568";
@@ -46,7 +46,7 @@ public class Credential {
         ZonedDateTime zdt = ZonedDateTime.now( z ) ;
         this.timeStamp = zdt.toString().replace("[Asia/Dhaka]", "");
         
-        // ConsumerId will be got from Database
+        // ConsumerId will be got from Database, Default value is 0
         this.consumerId = "0";
         this.formFreeStaging = "false";
         

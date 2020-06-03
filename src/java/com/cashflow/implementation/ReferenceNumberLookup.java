@@ -190,6 +190,10 @@ public class ReferenceNumberLookup {
         return this.ok_for_pickup.equalsIgnoreCase("true");
     }
     
+    public boolean getTransactionAvailability() {
+        return this.status.equalsIgnoreCase("AVAIL");
+    }
+    
     public String getErrorMessage() {
         return this.error_message;
     }

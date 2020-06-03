@@ -24,6 +24,7 @@ public class ReceiverInfo {
     private  String relationshipToSender;
     private  String receiverGender;
     private  String receiverPhoneCountryCode;
+    private String receiveReversalReason;
     
     
     
@@ -43,6 +44,8 @@ public class ReceiverInfo {
         this.relationshipToSender = "FAMILY"; 
         this.receiverGender = "FEMALE";
         this.receiverPhoneCountryCode = "880";   
+        
+        this.receiveReversalReason = "WRONG_TX";
     }
     
     
@@ -179,5 +182,15 @@ public class ReceiverInfo {
     
     public String getReceiverPhoneCountryCode() {
         return this.receiverPhoneCountryCode;
+    }
+    
+    
+    
+    public void setReceiveReversalReason(String receiveReversalReason) {
+        this.receiveReversalReason = receiveReversalReason;
+    }
+    
+    public String getReceiveReversalReason() {
+        return this.receiveReversalReason;
     }
 }

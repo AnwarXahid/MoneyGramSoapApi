@@ -31,7 +31,7 @@ public class MoneygramCash {
         
         if(ref_num_lookup.getSuccessfullCalling()) {
             if (!ref_num_lookup.getErrorCalling()) {
-                if (ref_num_lookup.getOkForAgent() && ref_num_lookup.getOkForPickup()) {
+                if (ref_num_lookup.getTransactionAvailability() && ref_num_lookup.getOkForAgent() && ref_num_lookup.getOkForPickup()) {
                     api_res.setCode(ref_num_lookup.getCode());
                     api_res.setSender_name(ref_num_lookup.getSenderName());
                     api_res.setReceiver_name(ref_num_lookup.getReceiverName());
@@ -104,6 +104,16 @@ public class MoneygramCash {
             api_res.setMessage("Server is not responding!!!!");
             api_res.setResponse_code("0");
         }
+        
+        return api_res;
+    }
+    
+    
+    private static ApiResponse payTxnReverse(Credential cdt, ReceiverInfo rcvr_info, ApiResponse api_response) {
+        ApiResponse api_res = new ApiResponse();
+        
+        
+        
         
         return api_res;
     }
