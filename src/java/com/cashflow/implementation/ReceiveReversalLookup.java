@@ -23,11 +23,11 @@ public class ReceiveReversalLookup {
     
     // Writing Constructor Function
 
-    public ReceiveReversalLookup(Credential cdt, ApiResponse api_res) {
+    public ReceiveReversalLookup(Credential cdt, ReceiverInfo rcvr_info, ApiResponse api_res) {
         this.api_err_calling = "false";
         
         try {
-            SOAPMessage responseMessage = new CommitTransaction(cdt, api_res).getResponse();
+            SOAPMessage responseMessage = new ReceiveReversal(cdt, rcvr_info, api_res).getResponse();
             SOAPPart sp = responseMessage.getSOAPPart();
             SOAPEnvelope se = sp.getEnvelope();
             SOAPBody soap_body = se.getBody();

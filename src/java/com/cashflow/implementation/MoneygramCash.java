@@ -14,11 +14,14 @@ public class MoneygramCash {
         Credential cdt = new Credential();
         ReceiverInfo rcv_info = new ReceiverInfo();
         
-        ApiResponse api_res_check = payTxnCheck(cdt);
-        System.err.println(api_res_check.getMessage());
+//        ApiResponse api_res_check = payTxnCheck(cdt);
+//        System.err.println(api_res_check.getMessage());
+//        
+//        ApiResponse api_res_confirm = payTxnConfirm(cdt, rcv_info, api_res_check);
+//        System.err.println(api_res_confirm.getMessage());
         
-        ApiResponse api_res_confirm = payTxnConfirm(cdt, rcv_info, api_res_check);
-        System.err.println(api_res_confirm.getMessage());
+        ApiResponse api_res_reversal = payTxnReverse(cdt, rcv_info);
+        System.err.println(api_res_reversal.getMessage());
     }
     
     
@@ -109,8 +112,46 @@ public class MoneygramCash {
     }
     
     
-    private static ApiResponse payTxnReverse(Credential cdt, ReceiverInfo rcvr_info, ApiResponse api_response) {
+    private static ApiResponse payTxnReverse(Credential cdt, ReceiverInfo rcvr_info) {
         ApiResponse api_res = new ApiResponse();
+        ApiResponse api_ref_res = new ApiResponse();
+        
+        ReferenceNumberLookup ref_num_lookup = new ReferenceNumberLookup(cdt);
+        
+        
+        if(ref_num_lookup.getSuccessfullCalling()) {
+            if (!ref_num_lookup.getErrorCalling()) {
+                if (ref_num_lookup.getTransactionRcvedStatus()) {
+                    api_ref_res.setPayout_amount(ref_num_lookup.getPayoutAmount());
+                    
+                    ReceiveReversalLookup rcved_rvsal = new ReceiveReversalLookup(cdt,rcvr_info, api_ref_res);
+                    if (rcved_rvsal.getSuccessfullCalling()) {
+                        if (!rcved_rvsal.getErrorCalling()) {
+                            api_res.setCode(rcved_rvsal.getCode());
+
+                            api_res.setMessage("Successfully Reversed the Transaction.");
+                            api_res.setResponse_code("1");
+                        } else {
+                            api_res.setMessage(rcved_rvsal.getErrorMessage());
+                            api_res.setResponse_code("0");
+                        }
+                    } else {
+                        api_res.setMessage("Server is not responding!!!! Transaction commit FAILED!!!!");
+                        api_res.setResponse_code("0");
+                    }   
+                } else {
+                    api_res.setMessage("Can't reverse a Transaction whih is not RECVD!!!!");
+                    api_res.setResponse_code("0");
+                }
+            } else {
+                api_res.setMessage(ref_num_lookup.getErrorMessage());
+                api_res.setResponse_code("0");
+            }
+        } else {
+            api_res.setMessage("MoneyGram Server is not responding!!!!");
+            api_res.setResponse_code("0");
+        }
+        
         
         
         

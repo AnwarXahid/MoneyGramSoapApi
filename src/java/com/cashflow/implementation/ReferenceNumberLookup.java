@@ -194,6 +194,11 @@ public class ReferenceNumberLookup {
         return this.status.equalsIgnoreCase("AVAIL");
     }
     
+    
+    public boolean getTransactionRcvedStatus() {
+        return this.status.equalsIgnoreCase("RECVD");
+    }
+    
     public String getErrorMessage() {
         return this.error_message;
     }

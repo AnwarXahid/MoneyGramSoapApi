@@ -84,6 +84,8 @@ public class ReferenceNumber {
         MessageFactory messageFactory = MessageFactory.newInstance();
         SOAPMessage soapMessage = messageFactory.createMessage();
 
+        soapMessage.setProperty(SOAPMessage.WRITE_XML_DECLARATION, "true");
+        
         createSoapEnvelope(soapMessage);
 
         MimeHeaders headers = soapMessage.getMimeHeaders();

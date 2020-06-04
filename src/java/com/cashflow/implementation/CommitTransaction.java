@@ -85,7 +85,9 @@ public class CommitTransaction {
     private SOAPMessage createSOAPRequest(String soapAction) throws Exception {
         MessageFactory messageFactory = MessageFactory.newInstance();
         SOAPMessage soapMessage = messageFactory.createMessage();
-
+        
+        soapMessage.setProperty(SOAPMessage.WRITE_XML_DECLARATION, "true");
+        
         createSoapEnvelope(soapMessage);
 
         MimeHeaders headers = soapMessage.getMimeHeaders();
