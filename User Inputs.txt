@@ -1,0 +1,228 @@
+[[enum is given as (Value, Label). If Label is not given, then ut is same as Value.]]
+
+1. receiverAddress 
+Field Max: 30
+Data Type: String
+ValidatioonRegEx: : ^([a-zA-Z0-9 \u00C0-\u017F\#\/\.\"\'\,\(\)\-])*$
+
+
+2. receiverCity 
+Field Max: 40
+Data Type: String
+ValidatioonRegEx: ^([a-zA-Z \u00C0-\u017F\#\/\.\"\'\,\(\)\-])*$
+
+
+3. receiverCountry
+Field Max:  3
+Data Type: String (BGD)
+
+
+4. receiverBirthCountry (GUI)
+Field Max: 3
+Data Type: cntrycode (BGD)
+
+
+5. receiverDOB (GUI, Format: CCYY-MM-DD) (Condition: can't be later than current date.)
+Field Max: 10
+Data Type: date (1990-01-01)
+
+
+
+6. receiverGender (GUI)
+Enum: 	MALE
+	FEMALE
+	UNKNOWN  (Label: Not Known)
+
+
+
+
+
+7. receiverPhoneCountryCode (GUI)
+Field Max: 3
+Data Type: String (880)
+
+
+8. receiverPhone (GUI, Numeric Only)
+Field Max: 14
+Data Type: String
+
+
+
+9. receiverPhotoIdType (GUI)
+Enum: 	ALN (Label: Alien)
+	DRV (Label: Drivers License)
+	GOV (Label: NID)
+	PAS (Label: Passport)
+	
+	
+
+	
+	
+
+10. receiverPhotoIdNumber (Only alphanumeric and hypen is allowed.)
+Field Max: 25
+Data Type: String (903094094090)
+
+
+
+
+11. receiverPhotoIdCountry (GUI)
+Field Max: 3
+Data Type: cntrycode (BGD)
+
+
+
+
+
+
+12. relationshipToSender (GUI)
+Enum:   ACQUAINTANCE
+	BUSINESS_PARTNER
+	CLIENT
+	EMPLOY_EMPLOYER (lebel: Employee)
+	FAMILY (Lebel: Family Member)
+	FRIEND (Lebel: Close Friend)
+	CONTRACTOR
+	EMPLOYER
+	MYSELF
+	ONLINE_FRIEND
+	THIRD_PARTY
+	VENDOR
+	
+
+13. receivePurposeOfTransaction (GUI)
+Enum:   FAMILY_SUPPORT
+	BUSINESS_EXPENSE
+	DONATION
+	EDUCATION_TRAIN (Label: Education)
+	GIFT
+	INVEST_SAVING (Label: Investment)
+	LEGAL_OBLIGATION
+	LOAN
+	TRAVEL_EXPENSES
+	BILLS
+	FOOD
+	MEDICAL (Label: Medical Expenses)
+	PURCHASE_GOODS
+	I_DO_NOT_KNOW
+	SALARY
+	
+	
+	
+*** Receiver IID Issue Date 
+Data Type: CCYY-MM-DD
+
+
+*** Receiver IID Expiray Date
+Data Type: CCYY-MM-DD
+
+
+*** Receiver Occupation 
+Enum:
+	ADMIN(Label: Administrative)
+	AGRICULTURE
+	AUTOMOTIVE_SALES
+	BANKING(Label: Financial Services)
+	CLERGY(Label:  Religious)
+	COMPUTER(Label: Information Technology (IT))
+	CUSTOMER_CARE
+	EDUCATION
+	ENGINEER
+	FACTORY(Label: Physical Worker)
+	HEALTH_SERVICES(Label: Healthcare)
+	PUBLIC_OFFICIAL(Label: Public Servant)
+	RESTAURANT
+	RETIRED
+	STUDENT
+	UNEMPLOYED
+	CONSULTING
+	ENTERTAINMENT
+	EXECUTIVE
+	EXPLICIT_SERVICES
+	HUMAN_RESOURCES
+	LEGAL
+	PERSONAL_SERVICES
+	PORT
+	ENTREPRENEUR
+	
+	
+*** Receiver Country of Citizenship
+Dat Type: cntrycode
+
+
+
+Abir vai: If you no space to set the user input in interface, then, 3, 6 and 10 can be same, same country (cntrycode).
+If label is not written for Enumerated value, then the value and label are same (just remove the underscore).
+
+Input name can be:
+1. Receiver Street Address
+2. Receiver City
+2. Receiver Country
+4. Receiver Birth Country
+5. Receiver Date of Birth
+6. Receiver Gender 
+7. Receiver Phone Country Code
+8. Receiver Phone Number
+9. Receiver IID Type
+*** Receiver IID Issue Date 
+*** Receiver IID Expiray Date
+*** Receiver Occupation 
+*** Receiver Country of Citizenship
+10. Receiver ID Number
+11. Receiver ID Issue Country
+12. Relationship to Sender
+13. Purpose of Transaction
+
+
+N.B: For Enumerated Value:- Enumerated value - agent application must use 
+the valid enumerations returned from getFieldsForProduct (GFFP) response 
+and allow only valid values to be selected. 
+The list returned can be different based on the agent’s country
+
+
+
+
+Reasons for Receive Reversal:
+1. WRONG_TX
+2. ID_PROBLEM
+
+
+
+Available Reference Numbers:
+88111562
+
+91185422
+
+53556129
+
+17959114
+
+38862196
+
+57000013
+
+99323860
+
+36298643
+
+71360001
+
+47668730
+
+68433231
+
+57439928
+
+92976079
+
+49131639
+
+55547500
+
+
+Findings:
+No need to call GFFP if receiveCurrency is same, hard code is  enough
+TransactionStatus should be checked before calling payTxnConfirm
+contryCode can be get from api/hardcode it
+max three time commitTransaction should be called
+currenty rate and receive amount should be showed to  customer
