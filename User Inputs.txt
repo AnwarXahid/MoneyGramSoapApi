@@ -185,6 +185,7 @@ The list returned can be different based on the agent’s country
 Reasons for Receive Reversal:
 1. WRONG_TX
 2. ID_PROBLEM
+3. INTERNAL_SYSTEM_PROBLEM
 
 
 
