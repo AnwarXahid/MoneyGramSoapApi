@@ -31,7 +31,7 @@ public class Credential {
     
     
     public Credential() {
-        this.referenceNumber = "91185422";
+        this.referenceNumber = "94236715";
         this.soapEndpointUrl = "https://extws.moneygram.com/extws/services/AgentConnect1512";
         this.soapAction = "https://extws.moneygram.com/extws/services/AgentConnect1512";
         this.agentID = "43457568";

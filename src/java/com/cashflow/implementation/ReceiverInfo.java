@@ -24,7 +24,10 @@ public class ReceiverInfo {
     private  String relationshipToSender;
     private  String receiverGender;
     private  String receiverPhoneCountryCode;
+    private  String operatorName;
+    private  String receiverIntendedUseOfMGIServices;
     private String receiveReversalReason;
+    
     
     
     
@@ -43,7 +46,10 @@ public class ReceiverInfo {
         this.receivePurposeOfTransaction = "FAMILY_SUPPORT";
         this.relationshipToSender = "FAMILY"; 
         this.receiverGender = "FEMALE";
-        this.receiverPhoneCountryCode = "880";   
+        this.receiverPhoneCountryCode = "880"; 
+        this.receiverIntendedUseOfMGIServices = "BUSINESS_RELATED";
+        this.operatorName = "Kabila Kabil";
+        
         
         this.receiveReversalReason = "WRONG_TX";
     }
@@ -192,5 +198,23 @@ public class ReceiverInfo {
     
     public String getReceiveReversalReason() {
         return this.receiveReversalReason;
+    }
+    
+    
+    public void setReceiverIntendedUseOfMGIServices(String receiverIntendedUseOfMGIServices) {
+        this.receiverIntendedUseOfMGIServices = receiverIntendedUseOfMGIServices;
+    }
+    
+    public String getReceiverIntendedUseOfMGIServices() {
+        return this.receiverIntendedUseOfMGIServices;
+    }
+    
+    
+    public void setOperatorName(String operatorName) {
+        this.operatorName = operatorName;
+    }
+    
+    public String getOperatorName() {
+        return this.operatorName;
     }
 }

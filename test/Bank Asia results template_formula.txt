@@ -1,0 +1,151 @@
+<StartTCName>MS02</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>MS02</EndTCName>
+
+
+<StartTCName>MS02C</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>MS02C</EndTCName>
+
+
+<StartTCName>MS24</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>MS24</EndTCName>
+
+<StartTCName>RC01A</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC01A</EndTCName>
+
+
+<StartTCName>RC03A</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC03A</EndTCName>
+
+<StartTCName>RC13</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC13</EndTCName>
+
+
+<StartTCName>RC21</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC21</EndTCName>
+
+
+<StartTCName>RC22</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC</EndTCName>
+
+
+<StartTCName>RC24</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC24</EndTCName>
+
+
+<StartTCName>RC25</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC25</EndTCName>
+
+
+<StartTCName>RC27A</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC27A</EndTCName>
+
+
+<StartTCName>RC28A</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC28A</EndTCName>
+
+
+<StartTCName>RC30</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC30</EndTCName>
+
+
+<StartTCName>RC33</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC33</EndTCName>
+
+
+<StartTCName>RC39A</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC39A</EndTCName>
+
+
+<StartTCName>RC41A</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC41A</EndTCName>
+
+
+<StartTCName>RC41B</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC41B</EndTCName>
+
+
+<StartTCName>RC51</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RC51</EndTCName>
+
+
+<StartTCName>RR01</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RR01</EndTCName>
+
+
+<StartTCName>RR05</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RR05</EndTCName>
+
+
+<StartTCName>RR02</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RR02</EndTCName>
+
+
+<StartTCName>RR03</StartTCName>
+
+[See the INSTRUCTIONS in the test cases for the XML format]
+
+<EndTCName>RR03</EndTCName>
+
